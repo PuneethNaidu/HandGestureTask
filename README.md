@@ -98,30 +98,40 @@ HandGesture Scenes Folder :
 UI Instructions and Interfaces :
 Flow of the Scene and Event Progression
 Instruction UI 1 : ![Instructions](https://github.com/user-attachments/assets/1e8dc5ac-f600-4673-ad81-fe9b25ecca2d)
+
   - UI 1: Instructions Screen
     This initial UI provides instructions on how to perform basic interactions, such as grabbing an object and executing a swipe gesture.
     Interaction: A button is displayed on the screen. Clicking this button transitions the user to the tutorial phase.
+    
 Instruction UI 2 : ![Instructions2](https://github.com/user-attachments/assets/c86b24dd-30ca-46e9-b417-806c05a0ebc6)
+
   -> UI 2: Tutorial Phase
     The tutorial screen presents two interactive cubes:
     One cube demonstrates how to grab objects.
     The other cube showcases the rotation functionality using swipe gestures.
     Additional Interaction: A push button is included to allow progression to the next phase.
+    
 Instruction UI 3 : ![Instructions3](https://github.com/user-attachments/assets/4324005b-1f04-40d4-b807-bbee7be2e6a0)
+
   -> UI 3: Tutorial Completion Screen
       This screen confirms that the user has successfully performed the grab and swipe gestures.
       Interaction: The push button on this screen enables users to proceed to the main scene.
+      
 Main Scene View  : ![mainScene](https://github.com/user-attachments/assets/28d843c0-7fa1-4d1c-8846-95165a69ca00)
+
  -> Main Scene: Dungeon Environment
     The main scene immerses the user in a dungeon-themed 3D environment.
       Features:
       Multiple 3D objects populate the environment.
       Particle effects enhance the atmosphere and visual appeal.
+      
 Object To Rotate On swipe Gesture view  : ![MainScene_ObjectToRotate](https://github.com/user-attachments/assets/507455ce-e60f-403d-868a-899a4295486d)
+
 Objects To Grab View : ![mainScene_ObjectsToInteract](https://github.com/user-attachments/assets/33765fcd-f3dc-4bb0-a7eb-25238de28ca5)
-    Main Scene Interactions
-      Rotatable Objects: The user can identify specific objects in the environment that can be rotated using swipe gestures.
-      Grabbable Objects: Several 3D objects are placed on a virtual table, which the user can grab and interact with using their virtual hands.
+
+   Main Scene Interactions
+     Rotatable Objects: The user can identify specific objects in the environment that can be rotated using swipe gestures.
+     Grabbable Objects: Several 3D objects are placed on a virtual table, which the user can grab and interact with using their virtual hands.
    
 Challenges and Creative Solutions
 
