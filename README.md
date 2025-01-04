@@ -24,6 +24,11 @@ Pico Unity Project Setup Guide
 - Aim Flags: Add Pico bindings for AimFlags.
 
   Configuring Left Hand Bindings:
+
+  ![XRI Input Map Left](https://github.com/user-attachments/assets/c71250a6-5faf-4da2-86be-8641b278c2c3)
+
+  
+
   - XRI Left Interaction:
     - Select: Add binding for `Index Pressed`.
     - Binding Properties: Tracked Devices → Pico Aim Hand (Left Hand) → Index Pressed.
@@ -35,15 +40,24 @@ Pico Unity Project Setup Guide
     - Binding Properties: Tracked Devices → Pico Aim Hand (Left Hand) → PinchStrengthIndex.
 
   Configuring Right Hand Bindings:
+
+  ![XRI Input Map Right](https://github.com/user-attachments/assets/fe869a29-9dea-4fe8-bbc9-f4d535bd7646)
+
+  
+
  - Repeat the same steps as above for XRI Right Interaction, but choose the Right Hand.
 
- XR Origin Rig Setup
+XR Origin Rig Setup
 1. Locate the XR Origin Prefab in the Starter Assets of the XR Interaction Toolkit.
 2. Add the PXR_Manager component.
    - Turn off MRC.
    - Enable Hand Tracking.
 
- PICO Hand Models
+PICO Hand Models
+
+![XR_Origin_HandSetUp_Pico](https://github.com/user-attachments/assets/70d5f173-aece-4056-9497-2b707445eff7)
+
+
 Unity's default hand models do not align well with PICO’s hand bone structure. To resolve this:
 1. Navigate to: `Pico Integration Folder → Assets → Resources → Prefabs → Hand Left` and `Hand Right`.
 2. Add the respective hand prefab under the Hand (Left/Right) of the XR Origin Rig in Hand Interaction Visual.
@@ -94,6 +108,84 @@ Ensures that GameObjects are scaled up one after another, providing a smooth vis
 
 HandGesture Scenes Folder :
  Under this folder we can find scenes which i debugged to learn and implement the task, our main scene will be HandGestureScene. Here we can find the respective main task work i have done as per requirements.
+
+HandGestureScene Setup and scene flow :
+
+![SceneSetup](https://github.com/user-attachments/assets/4a9ec933-45f9-48c0-b505-097326d98dcf)
+
+In the Hierarchy of the HandGestureScene (above Image) , all the GameObjects responsible for accomplishing the designated tasks are included. These GameObjects collectively represent the scene's structure and functionality.
+ The setup ensures:
+  -All required GameObjects for hand gesture detection, interaction, and visual representation are present.
+  -Proper organization and naming conventions for better readability and maintenance.
+  
+Scaleup_UI :
+
+![SceneFlow_1_ScaleUp_UI](https://github.com/user-attachments/assets/b8ebd9bf-cd08-4d4d-8753-d2784906a886)
+
+ Within the Hierarchy, there is a GameObject named Scaleup_UI. This GameObject is equipped with a script named ScaleAnimation, which is responsible for managing the scale-up animation of the assigned GameObjects.
+  Key features include:
+   -Functionality: The script ensures a smooth scale-up effect for the associated GameObjects.
+   -Assigned Objects: The GameObjects assigned to this script include UI elements, such as instructional content, enhancing the user interface experience.
+
+Interaction with PokeButton_1 : 
+
+![SceneFlow_2_PokeButton_1](https://github.com/user-attachments/assets/2350b204-c848-407b-bb7a-660ab14b37f8)
+
+ The PokeButton_1 GameObject plays a crucial role in the scene’s interaction flow.
+  Functionality:
+   When PokeButton_1 is clicked:
+   The current UI instructions are disabled.
+   The PokeButton_1 itself is disabled.
+   The Scaleup_Cube GameObject is enabled.
+   The scene transitions to the tutorial section.
+   This interactive flow ensures a smooth transition from the instruction phase to the tutorial phase, maintaining user focus and engagement while dynamically updating the scene elements.
+
+   Fig 1 :
+   
+   ![SceneFlow_3_ScaleUpCube](https://github.com/user-attachments/assets/d887f58b-dfc5-4242-ae89-bce3b28e82a2)
+
+   Fig 2 :
+   
+   ![SceneFlow_4_pokeButton_2_Enable](https://github.com/user-attachments/assets/01f97b29-e684-43a3-a930-5c79a700ad25)
+
+
+  ScaleUp_Cube gameobject(Fig 1) will scaleup and show us the tutorial gameobjects and also posedebugger(fig 2) which is responsible for the handgesturedetection with "static Hand Gesture script" is also enabled 
+  when we click on the PokeButton_1.
+  
+Interaction with PokeButton_2 :
+
+![SceneFlow_5_PokeButton_2](https://github.com/user-attachments/assets/44f2c7f2-d40d-451f-b7fb-279940a99bf6)
+
+  Once the tutorial is done we can clik on the PokeButton_2 which will disable the previous UI and tutorial gameobjects and enables the ScaleUpEnvironment gameobject.
+
+ScaleUpEnvironment Gameobject:
+
+  ![Sceneflow_6_ScaleUpEnvironment](https://github.com/user-attachments/assets/a100d862-8699-478b-b3a8-ac35a866a9b7)
+
+ The ScaleupEnvironment GameObject is responsible for managing the transition to the main dungeon setup.
+
+   Script: The ScaleDownAnimation script is attached to this GameObject.
+    Functionality:
+     The script sequentially scales down an array of GameObjects, creating a dynamic effect.
+     Once the scale-down process is complete, it enables the DugenPrefab.
+    DugenPrefab:
+     This prefab contains the 3D GameObjects that make up the main dungeon setup, forming the core of the environment.
+
+ DungenPrefab Gameobject : 
+ 
+ ![SceneFlow_7_DungenPrefab](https://github.com/user-attachments/assets/1a5c076d-8634-426f-b8c2-016215661aad)
+
+ The DungenPrefab GameObject serves as the central structure for the dungeon environment.
+ Components:
+  ScaleAnimation Script:
+   Responsible for the scale-up animation of the dungeon environment, ensuring a smooth and dynamic transition when the dungeon is activated.
+  Child Object: PoseDebugger:
+   The PoseDebugger is a child of the DungenPrefab.
+   Functionality:
+   Detects swipe hand gestures, enabling user interaction within the dungeon environment.
+   It is automatically enabled as part of the setup.
+ This comprehensive setup combines animation and gesture detection to create an interactive and immersive dungeon environment.
+
  
 UI Instructions and Interfaces :
 Flow of the Scene and Event Progression
