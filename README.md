@@ -189,13 +189,17 @@ ScaleUpEnvironment Gameobject:
  
 UI Instructions and Interfaces :
 Flow of the Scene and Event Progression
-Instruction UI 1 : ![Instructions](https://github.com/user-attachments/assets/1e8dc5ac-f600-4673-ad81-fe9b25ecca2d)
+Instruction UI 1 : 
+
+![Instructions](https://github.com/user-attachments/assets/1e8dc5ac-f600-4673-ad81-fe9b25ecca2d)
 
   - UI 1: Instructions Screen
     This initial UI provides instructions on how to perform basic interactions, such as grabbing an object and executing a swipe gesture.
     Interaction: A button is displayed on the screen. Clicking this button transitions the user to the tutorial phase.
     
-Instruction UI 2 : ![Instructions2](https://github.com/user-attachments/assets/c86b24dd-30ca-46e9-b417-806c05a0ebc6)
+Instruction UI 2 :
+
+![Instructions2](https://github.com/user-attachments/assets/c86b24dd-30ca-46e9-b417-806c05a0ebc6)
 
   -> UI 2: Tutorial Phase
     The tutorial screen presents two interactive cubes:
@@ -203,13 +207,17 @@ Instruction UI 2 : ![Instructions2](https://github.com/user-attachments/assets/c
     The other cube showcases the rotation functionality using swipe gestures.
     Additional Interaction: A push button is included to allow progression to the next phase.
     
-Instruction UI 3 : ![Instructions3](https://github.com/user-attachments/assets/4324005b-1f04-40d4-b807-bbee7be2e6a0)
+Instruction UI 3 : 
+
+![Instructions3](https://github.com/user-attachments/assets/4324005b-1f04-40d4-b807-bbee7be2e6a0)
 
   -> UI 3: Tutorial Completion Screen
       This screen confirms that the user has successfully performed the grab and swipe gestures.
       Interaction: The push button on this screen enables users to proceed to the main scene.
       
-Main Scene View  : ![mainScene](https://github.com/user-attachments/assets/28d843c0-7fa1-4d1c-8846-95165a69ca00)
+Main Scene View  :
+
+![mainScene](https://github.com/user-attachments/assets/28d843c0-7fa1-4d1c-8846-95165a69ca00)
 
  -> Main Scene: Dungeon Environment
     The main scene immerses the user in a dungeon-themed 3D environment.
@@ -217,9 +225,13 @@ Main Scene View  : ![mainScene](https://github.com/user-attachments/assets/28d84
       Multiple 3D objects populate the environment.
       Particle effects enhance the atmosphere and visual appeal.
       
-Object To Rotate On swipe Gesture view  : ![MainScene_ObjectToRotate](https://github.com/user-attachments/assets/507455ce-e60f-403d-868a-899a4295486d)
+Object To Rotate On swipe Gesture view  : 
 
-Objects To Grab View : ![mainScene_ObjectsToInteract](https://github.com/user-attachments/assets/33765fcd-f3dc-4bb0-a7eb-25238de28ca5)
+![MainScene_ObjectToRotate](https://github.com/user-attachments/assets/507455ce-e60f-403d-868a-899a4295486d)
+
+Objects To Grab View :
+
+![mainScene_ObjectsToInteract](https://github.com/user-attachments/assets/33765fcd-f3dc-4bb0-a7eb-25238de28ca5)
 
    Main Scene Interactions
      Rotatable Objects: The user can identify specific objects in the environment that can be rotated using swipe gestures.
@@ -236,7 +248,61 @@ Challenge 2: Implementing Swipe Gesture Detection
 The Pico headset, when paired with the XR Hands package, only supports static hand gesture detection. Since swiping is not a static gesture, I developed a workaround:
 - I utilized two hand poses:
   1. An open palm flexing shape as the base pose.
+     
+     Flex Shape :
+     
+     ![FlexShape](https://github.com/user-attachments/assets/d22f4827-5e45-4bc2-8ffd-ad3ef3e7e438)
+
+     Conditions for Finger Shape Detection:
+      Thumb: Excluded from the conditions.
+      Other Fingers:
+      Shape: Full Curl
+      Upper Tolerance: 0.35
+      Lower Tolerance: 0.25
+      Desired Value: 0 (indicating no curl in the fingers)
+     
+    Flex Pose :
+
+    ![FlexPose](https://github.com/user-attachments/assets/0010d1aa-4816-47c4-9683-26f1953f8d69)
+
+     Assigned Hand Shape: FlexShape
+     Relative Orientation Conditions:
+     Hand Axis Thumb Extended Direction:
+     Alignment: Aligns With
+     Reference: Origin Up
+     Angle Tolerance: 90
+   Detection Workflow:
+   When all Flex Shape and Flex Pose conditions are satisfied, the pose is considered detected.
+   Upon successful detection, the system enables the left swipe gesture, allowing interaction based on this gesture.
+  
   2. Full curl parameters to define another pose resembling a swipe gesture.
+     
+     Swipe Shape :
+     
+     ![Swipeshape](https://github.com/user-attachments/assets/338ad1c1-2e70-4846-9545-c17823056ead)
+
+     Conditions for Finger Shape Detection:
+      Thumb: Excluded from the conditions.
+      Other Fingers:
+      Shape: Full Curl
+      Upper Tolerance: 0.15
+      Lower Tolerance: 0.15
+      Desired Value: 0.5 (indicating midlevel curl in the fingers)
+     
+     Swipe Pose :
+     
+     ![swipePose](https://github.com/user-attachments/assets/b98e9fe7-7475-4026-91b3-6b7f6ec78823)
+
+      Assigned Hand Shape: SwipeShape
+      Relative Orientation Conditions:
+      Hand Axis Thumb Extended Direction:
+      Alignment: Aligns With
+      Reference: Origin Up
+      Angle Tolerance: 90
+   Detection Workflow:
+   When all swipe Shape and swipe Pose conditions are satisfied, the pose is considered detected.
+   Upon successful detection, the system enables the right swipe gesture, allowing interaction based on this gesture.
+
 - Using these two poses and the On Gesture Performed events, I performed rotation operations on the respective game objects to simulate a swipe gesture.
 
 These solutions allowed me to achieve the required functionality despite the hardware and software limitations.
